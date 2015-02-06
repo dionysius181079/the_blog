@@ -1,0 +1,50 @@
+<h1>Search Articles</h1>
+
+<%= search_form_for @q, url: explore_articles_path do |f| %>
+
+  <fieldset>
+    <legend>Key words</legend>
+
+    <ul>
+      <li>
+        <%= f.label :name_cont %>
+        <%= f.search_field :name_cont %>
+      </li>
+      
+    </ul>
+
+  </fieldset>
+
+  <%= f.submit %>
+<% end %>
+
+<pre style="overflow-x: auto">
+  <%= @articles.inspect %>
+</pre>
+
+<h2>Your first 10 results</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.name %></td>
+        <td><%= article.content %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<%= link_to 'Back', articles_path %>
+<hr>
+
+

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+	<p>
+	  <strong>Name:</strong>
+	  <%= @article.name %>
+	</p>
+
+	<p>
+	  <strong>Content:</strong>
+	  <%= @article.content %>
+	</p>
+
+	<p>
+	  Tag_words:
+	  <%= @article.tag_words %>
+	</p>
+
+
+	<p>  
+	  Published_on:
+	  <%= @article.published_on %>  
+	</p>  
+
+        
+
+
+
+    <% if @article.comments.size > 0 %>  
+<fieldset>
+      <legend>Comments  <%= @article.comments.size %></legend>  
+<hr>      
+      <% for comment in @article.comments %>  
+        <h3>>><%= comment.name %></h3>  
+        <p>::<%= comment.content %></p>  
+<hr>
+      <% end %>
+</fieldset>  
+    <% end %>  
+
+<hr>      
+    <h2>New Comment</h2>  
+      
+    <%= form_for [@article, Comment.new] do |f| %>  
+      <p><%= f.label :name %> <%= f.text_field :name %></p>  
+      <p><%= f.text_area :content, :rows => 10 %></p>  
+      <p><%= f.submit %></p>  
+    <% end %>  
+
+
+<hr>      
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+<hr>      
+
